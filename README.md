@@ -9,6 +9,6 @@ A collection of numerical methods are presented, which includes solving linear/n
 03:
 ...
 
-## Demonstration involved
+## Demonstration
 Follow indices of corresponding algorithms/methods
 
