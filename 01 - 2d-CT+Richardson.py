@@ -18,7 +18,7 @@ def integral(func, exact_sol, num_interval, xrange, yrange):
 		[error, error_Rd]: error of integration with and without Richardson extrapolation if exact_sol is provided
     '''
 
-    Qcr_list = []
+    qcr_list = []
     Qcr_Rd_list = []
     error = []
     error_Rd = []
