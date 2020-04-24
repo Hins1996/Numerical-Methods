@@ -19,9 +19,9 @@ def integral(func, exact_sol, num_interval, xrange, yrange):
     '''
 
     qcr_list = []
-    Qcr_Rd_list = []
+    qcr_rd_list = []
     error = []
-    error_Rd = []
+    error_rd = []
     for n in num_interval:
         h_x = (xrange[1] - xrange[0]) / n
         h_y = (yrange[1] - yrange[0]) / n
@@ -33,33 +33,33 @@ def integral(func, exact_sol, num_interval, xrange, yrange):
         w_y[-1] = h_y / 2
         x = np.linspace(xrange[0], xrange[1], n + 1)
         y = np.linspace(yrange[0], yrange[1], n + 1)
-        Qcr = 0
+        qcr = 0
         for i in range(n + 1):
             for j in range(n + 1):
-                Qcr += w_x[i] * w_y[j] * func(x[i], y[j])
-        Qcr_list.append(Qcr)
+                qcr += w_x[i] * w_y[j] * func(x[i], y[j])
+        qcr_list.append(qcr)
         if exact_sol is None:
             pass
         else:
-            error.append(abs(Qcr - exact_sol))
+            error.append(abs(qcr - exact_sol))
 
         # Richardson Extrapolation
         if n > 2:
-            Q_cr_Rd = 4 / 3 * Qcr_list[-1] - 1 / 3 * Qcr_list[-2]
-            Qcr_Rd_list.append(Q_cr_Rd)
+            q_cr_rd = 4 / 3 * qcr_list[-1] - 1 / 3 * qcr_list[-2]
+            qcr_rd_list.append(q_cr_rd)
             if exact_sol is None:
                 pass
             else:
-                error_Rd.append(abs(Q_cr_Rd - exact_sol))
+                error_Rd.append(abs(q_cr_rd - exact_sol))
 
     error = np.array(error)
-    error_Rd = np.array(error_Rd)
-    Qcr_list = np.array(Qcr_list)
-    Qcr_Rd_list = np.array(Qcr_Rd_list)
+    error_rd = np.array(error_rd)
+    qcr_list = np.array(qcr_list)
+    qcr_rd_list = np.array(qcr_rd_list)
     if exact_sol is None:
-        return [Qcr_list, Qcr_Rd_list]
+        return [qcr_list, qcr_rd_list]
     else:
-        return [error, error_Rd]
+        return [error, error_rd]
 
 
 '''##### PART 2 #####
